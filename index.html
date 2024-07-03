@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- meta tags, links to css, etc. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?">
+<title>Graphify</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li class="user-space">Account</li>
+                <li id="shuffleButton">Shuffle</li>
+                <li class="playlist-space">Song List</li>
+                <li class="artist-space">Artist List</li>
+                <li class="question-mark-space">Help & Info</li>
+            </ul>
+        </nav>
+    </div>
+
+
+<!-- visible content goes here -->
+
+<div class="glass" id="artist-menu">
+    <h1>Current Artists in Playlist</h1>
+    <span class="close-btn">&times;</span>
+    <div class="menu-content">
+        <div id="imagesContainer"></div>
+    </div>
+</div>
+
+<div class="glass" id="help-menu">
+    <span class="close-btn">&times;</span>
+        <h1>Help and Info</h1>
+    <div class="menu-content">
+        <h2>Double click anywhere on screen to create a node! Enter an artist's name and click on the Song List tab to see their songs populate the list. Drag and drop the nodes, their distance from the central node determining the number of songs from that artist within the playlist. Right click on a node to delete. Click on Artist List to see what artists are in the playlist. Click on Shuffle to add variation to the playlist; new songs from each artist will populate the playlist. Click on the Account tab to link your Spotify account and to save the playlist to your library.</h2>
+        <h2>Graphify is a visual Spotify playlist generator based on a graph system; a central node with segments and user-chosen children nodes. The number of songs from the child node in the playlist is dependent on the distance of the node to the central node. The closer the node is to the central node, the greater number of songs there are. The further the distance, a lesser number of songs populate the playlist. Add up to 15 nodes! </h2>
+        <h2>This project was designed and produced by David Yoder '26 of Davidson College under supervision of Prof. Owen Mundy. The idea of Graphify was found among discussion of another Spotify project with Prof. Williams at Davidson College. The general idea was to have a visual representation of a Spotify playlist, but with a graph-like design (David was taking discrete math at the time, which would touch briefly on graph theory). It was decided that there would be a central node, and user-created children nodes with an artist's name. The distance of the child nodes from the central node would determine the number of songs of that artist in the playlist. Graphify works with SVGs being the nodes and line segments, and uses user input for the Spotify API. </h2>
+        <h2>The basic API functions were first programmed, simply getting songs from artists and displaying the artist's image. Afterwards, the basic graph idea was programmed, double clicking to create a new node, keeping track of cursor position, adjusting the line segment, dragging a node, etc. The two programs were combined, and more ideas for the project were found, like adjusting the glow on each node to represent the distance (red being far, and green being close), shuffling the songs in the playlist, displaying the album art for each song, logging in with Spotify to be able to save the playlist to the account's library. The design changed as well, going from icons for navigation to a text nav-bar.</h2>
+    </div>
+</div>
+
+ <div class="glass" id="user-menu">
+    <span class="close-btn">&times;</span>
+    <h1>Spotify User Login</h1>
+    <div id="user-profile">
+        <img id="user-image" src="" alt="User Image" style="width: 100px; height: 100px;">
+        <p class="user-name" id="user-name">Username</p>
+    </div>
+    <div class="button-container">
+        <button class="glass-button" id="loginButton">Login with Spotify</button>
+        <button class="glass-button" id="savePlaylistButton">Save Playlist to Spotify</button>
+    </div>
+</div>
+
+
+
+<div id="contextMenu" class="context-menu" style="display: none;">
+    <ul>
+    <li id="deleteNode">Delete Node</li>
+    </ul>
+</div>
+
+<div class="side-bar" id="side-bar">
+    <span class="close-btn" id="x">&times;</span>
+    <div class="playlistContainer" id="playlistContainer">
+        <h1>Playlist Name</h1>
+        <input class="playlistNameInput" type="text" id="playlistNameInput" placeholder="Enter Playlist Name">
+        <div id="songList"></div>
+    </div>
+</div>
+
+<svg id="graph"></svg>
+
+
+
+
+<!-- load javascript after the page elements render -->
+<script src="assets/js/main.js"></script>
+</body>
+</html>
