@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
  
   openHelpMenu(); // open help menu on load
 
+  
+
   const playlistNameInput = document.getElementById('playlistNameInput');
   const playlistHeader = document.querySelector('#playlistContainer h1'); // select the playlist header
   
@@ -224,6 +226,12 @@ document.addEventListener('click', function(event) {
   }
 });
 
+ document.querySelectorAll('.close-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            this.closest('.glass').classList.remove('visible');
+        });
+ })
+
 });
 
 // GRAPH JS END
@@ -359,10 +367,10 @@ function getSongsCount(distance) {
 // SPOTIFY JS
 
 
-const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
+const redirectUri = VITE_SPOTIFY_REDIRECT_URI;
 
-const string1 = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
-const string2 = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+const string1 = VITE_SPOTIFY_CLIENT_SECRET;
+const string2 = VITE_SPOTIFY_CLIENT_ID;
 let userAccessToken;
 
 document.addEventListener('DOMContentLoaded', function () {
