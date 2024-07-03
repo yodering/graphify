@@ -1,14 +1,24 @@
 [build]
-     command = "pnpm run build"
-     publish = "dist"
-     functions = "netlify/functions"
+  command = "pnpm run build"
+  publish = "dist"
+  functions = "netlify/functions"
 
-   [[headers]]
-     for = "/*.js"
-     [headers.values]
-       Content-Type = "application/javascript"
+# Serve static assets correctly
+[[headers]]
+  for = "/*.(js|css|ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|cur|ani|pdf)(.*)$"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
-   [[redirects]]
-     from = "/*"
-     to = "/index.html"
-     status = 200
+# Ensure .js files are served as JavaScript
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript"
+
+# Redirect rule for SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+  conditions = {Path = {exclude = ["/*.js", "/*.css", "/*.svg", "/*.png", "/*.jpg", "/*.ico"]}}
