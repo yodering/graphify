@@ -1,9 +1,14 @@
 [build]
-  command = "pnpm run build"
-  publish = "dist"
-  functions = "netlify/functions"
+     command = "pnpm run build"
+     publish = "dist"
+     functions = "netlify/functions"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+   [[headers]]
+     for = "/*.js"
+     [headers.values]
+       Content-Type = "application/javascript"
+
+   [[redirects]]
+     from = "/*"
+     to = "/index.html"
+     status = 200

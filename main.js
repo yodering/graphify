@@ -1,3 +1,5 @@
+console.log('main.js loaded successfully');
+
 let artistSongsMap = {};
 let svg;
 let selectedNode = null;
