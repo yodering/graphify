@@ -1,5 +1,4 @@
 console.log('main.js loaded successfully');
-console.log('Redirect URI:', import.meta.env.VITE_SPOTIFY_REDIRECT_URI);
 
 
 let artistSongsMap = {};
