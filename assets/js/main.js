@@ -1,4 +1,6 @@
 console.log('main.js loaded successfully');
+console.log('Redirect URI:', import.meta.env.VITE_SPOTIFY_REDIRECT_URI);
+
 
 let artistSongsMap = {};
 let svg;
@@ -418,12 +420,19 @@ async function exchangeCodeForToken(code) {
 }
 
 function spotifyLogin() {
+  const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+  const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
   const scope = 'playlist-modify-public playlist-modify-private';
-  const authUrl = `https://accounts.spotify.com/authorize?client_id=${string2}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`;
+  
+  console.log('Client ID:', clientId);
+  console.log('Redirect URI:', redirectUri);
+
+  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`;
+
+  console.log('Auth URL:', authUrl);
 
   // redirect current window to spotify login
   window.location.href = authUrl;
-
 }
 
 
