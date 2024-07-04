@@ -383,21 +383,27 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 async function handleAuthRedirect() {
-    const queryString = window.location.search;
-    console.log("Query string received:", queryString);
+  console.log("Current URL:", window.location.href);
+  const queryString = window.location.search;
+  console.log("Query string received:", queryString);
 
-    const urlParams = new URLSearchParams(queryString);
-    const code = urlParams.get('code');
-    console.log("Authorization code:", code);
+  const urlParams = new URLSearchParams(queryString);
+  const code = urlParams.get('code');
+  console.log("Authorization code:", code);
 
-    if (code) {
-        userAccessToken = await exchangeCodeForToken(code);
-        console.log("User access token:", userAccessToken);
+  const error = urlParams.get('error');
+  console.log("Error (if any):", error);
 
-        if (userAccessToken) {
-            fetchUserProfile(); 
-        }
-    }
+  if (code) {
+      userAccessToken = await exchangeCodeForToken(code);
+      console.log("User access token:", userAccessToken);
+
+      if (userAccessToken) {
+          fetchUserProfile(); 
+      }
+  } else {
+      console.log("No authorization code found. Check if there's an error in the URL parameters.");
+  }
 }
 
 
