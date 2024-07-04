@@ -369,10 +369,10 @@ function getSongsCount(distance) {
 // SPOTIFY JS
 
 
-const redirectUri = VITE_SPOTIFY_REDIRECT_URI;
+const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
 
-const string1 = VITE_SPOTIFY_CLIENT_SECRET;
-const string2 = VITE_SPOTIFY_CLIENT_ID;
+const string1 = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
+const string2 = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 let userAccessToken;
 
 document.addEventListener('DOMContentLoaded', function () {
